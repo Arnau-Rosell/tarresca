@@ -19,7 +19,7 @@ build.py                  Generates the HTML from content/ (standard library onl
 
 1. Change a text in `content/obra/*.md` (or the CSS in `docs/css/style.css`).
 2. Run `python3 build.py`.
-3. Preview with `python3 -m http.server -d docs` at http://localhost:8000.
+3. Preview with `python3 -m http.server 8002 -d docs` at http://localhost:8002.
 
 ### Content file format
 
