@@ -1,0 +1,19 @@
+[project]
+name = "tarresca"
+version = "0.1.0"
+description = "Static website for Tárrega y Escaned."
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "D", "N", "B", "I", "C4", "A"]
+ignore = [
+  "D203", "D204", "D213", "D215", "D400", "D401", "D404",
+  "D406", "D407", "D408", "D409", "D413",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
