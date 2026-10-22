@@ -302,7 +302,7 @@ def page(
   <meta name="author" content="{esc(ARTISTS)}">
   <meta property="og:title" content="{esc(full_title)}">
   <meta property="og:description" content="{esc(description)}">{og}
-  <meta name="theme-color" content="#f3ede4">
+  <meta name="theme-color" content="#f7f6f3">
   <link rel="icon" href="{root}favicon.svg" type="image/svg+xml">
   <link rel="preload" href="{root}fonts/schibsted-grotesk-normal-latin.woff2"
         as="font" type="font/woff2" crossorigin>
@@ -339,44 +339,37 @@ def page(
 
 
 def render_index(works: list[Work]) -> str:
-    """Render the catalogue of works, grouped by year, newest first."""
-    years: dict[str, list[Work]] = {}
+    """Render the catalogue of works as one grid, in content-file order.
+
+    The content files are numbered newest first, so the grid is chronological.
+    """
+    items = []
     for work in works:
-        years.setdefault(work.year, []).append(work)
-    sections = []
-    for year in sorted(years, reverse=True):
-        items = []
-        for work in years[year]:
-            when = (
-                f'\n          <span class="work-date">{esc(work.date)}</span>'
-                if work.date != work.year
-                else ""
-            )
-            thumb = picture(
-                work.cover,
-                "",
-                "",
-                "(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw",
-                eager=work is works[0],
-            )
-            keywords = esc(search_text(work))
-            items.append(f"""        <li class="work" data-search="{keywords}">
-          <a href="obra/{work.slug}/">
-          <span class="work-thumb">{thumb}</span>
-          <span class="work-title">{esc(work.title)}</span>{when}
-          </a>
-        </li>""")
-        sections.append(f"""    <section class="year" aria-labelledby="y{year}">
-      <h2 class="year-title" id="y{year}">{year}</h2>
-      <ol class="works">
+        thumb = picture(
+            work.cover,
+            "",
+            "",
+            "(min-width: 82rem) 18rem, (min-width: 64rem) 23vw, "
+            "(min-width: 40rem) 31vw, 47vw",
+            eager=work is works[0],
+        )
+        keywords = esc(search_text(work))
+        items.append(f"""      <li class="work" data-search="{keywords}">
+        <a href="obra/{work.slug}/">
+        <span class="work-thumb">{thumb}</span>
+        <span class="work-title">{esc(work.title)}</span>
+        <span class="work-date">{esc(work.date)}</span>
+        </a>
+      </li>""")
+    main = f"""    <p class="search-status" role="status"></p>
+    <ol class="works" aria-label="Obras">
 {chr(10).join(items)}
-      </ol>
-    </section>""")
+    </ol>"""
     return page(
         root="",
         title=SITE_NAME,
         description=SITE_DESCRIPTION,
-        main='    <p class="search-status" role="status"></p>\n' + "\n".join(sections),
+        main=main,
         current="obra",
         og_image=f"img/{works[0].cover.slug}/{works[0].cover.name}-900.jpg",
         wordmark_tag="h1",

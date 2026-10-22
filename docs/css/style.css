@@ -63,13 +63,13 @@
 :root {
   color-scheme: light;
 
-  /* Warm paper, clay-tinted. Never pure white or pure black. */
-  --paper: #f3ede4;
-  --paper-deep: #e8dfd2;
-  --ink: #2a241f;        /* 13.2:1 on paper */
-  --ink-soft: #665a4f;   /* 5.7:1 on paper */
-  --accent: #a63d22;     /* terracotta, 5.4:1 on paper */
-  --rule: #d3c8b8;
+  /* Near-white paper with a trace of warmth. Never pure white or pure black. */
+  --paper: #f7f6f3;
+  --paper-deep: #ecebe7;
+  --ink: #2a241f;        /* 14.2:1 on paper */
+  --ink-soft: #665a4f;   /* 6.2:1 on paper */
+  --accent: #a63d22;     /* terracotta, 5.9:1 on paper */
+  --rule: #d9d6d0;
 
   --font-display: "Schibsted Grotesk", "Helvetica Neue", Helvetica, sans-serif;
   --font-text: "Newsreader", "Iowan Old Style", Georgia, serif;
@@ -242,33 +242,14 @@ main {
 }
 
 /* ---------------------------------------------------------------------------
-   Index: works grouped by year
+   Index: one grid of works, newest first
    ------------------------------------------------------------------------ */
-
-.year {
-  display: grid;
-  gap: 1.5rem;
-  padding-top: clamp(2.5rem, 6vw, 5rem);
-}
-
-.year + .year {
-  margin-top: clamp(1rem, 3vw, 2.5rem);
-  border-top: 1px solid var(--rule);
-}
-
-.year-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.75rem, 7vw, 5rem);
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 0.9;
-  font-variant-numeric: tabular-nums lining-nums;
-}
 
 .works {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2.25rem 1rem;
+  padding-top: clamp(2rem, 5vw, 4rem);
 }
 
 .work a {
@@ -323,18 +304,8 @@ main {
 }
 
 @media (min-width: 64rem) {
-  .year {
-    grid-template-columns: minmax(9rem, 1fr) 4fr;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  .year-title {
-    position: sticky;
-    top: 2rem;
-  }
-
   .works {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 3.5rem 1.75rem;
   }
 }

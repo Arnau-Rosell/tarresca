@@ -36,8 +36,8 @@ build.py                  Generates the HTML from content/ (standard library onl
 ```
 ---
 title: La puerta roja
-year: 2023                  # groups the work on the index page
-date: 2023                  # shown when it differs from the year (e.g. "1984–2024")
+year: 2023                  # shown above the title on the work page
+date: 2023                  # shown under the thumbnail (e.g. "1984–2024")
 cover: cover.jpg            # thumbnail on the index page
 media:                      # in display order; "video" marks where video_url goes
   - video
@@ -70,7 +70,7 @@ Then add `- 09.jpg` to the `media` list and rebuild.
 
 ## Design rules
 
-- Warm paper background (`#f3ede4`) and warm ink (`#2a241f`). No pure black or white.
+- Near-white paper background (`#f7f6f3`) and warm ink (`#2a241f`). No pure black or white.
 - Body text contrast is at least 4.5:1. The tokens are documented in `style.css`.
 - No cards. Works sit directly on the paper, separated by whitespace and hairlines.
 - Hover effects change colour only, run in under 200 ms with ease-out, and only

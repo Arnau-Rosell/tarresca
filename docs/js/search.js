@@ -7,7 +7,6 @@
   const form = input && input.form;
   const status = document.querySelector(".search-status");
   const works = Array.from(document.querySelectorAll(".work[data-search]"));
-  const years = Array.from(document.querySelectorAll(".year"));
   if (!input || !form || !status || works.length === 0) return;
 
   function normalise(text) {
@@ -28,9 +27,6 @@
       const match = terms.every((term) => text.includes(term));
       work.hidden = !match;
       if (match) shown += 1;
-    }
-    for (const year of years) {
-      year.hidden = !year.querySelector(".work:not([hidden])");
     }
 
     if (terms.length === 0) {
