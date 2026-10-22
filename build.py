@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import html
 import re
+import unicodedata
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
@@ -263,6 +264,7 @@ def page(
     current: str,
     og_image: str | None = None,
     wordmark_tag: str = "p",
+    scripts: tuple[str, ...] = (),
 ) -> str:
     """Wrap page content in the shared document shell.
 
@@ -274,10 +276,14 @@ def page(
         current: Which navigation item is current: ``obra`` or ``contacto``.
         og_image: Relative URL of the image used when the page is shared.
         wordmark_tag: The element used for the site name in the header.
+        scripts: Script paths, relative to the site root, loaded with ``defer``.
 
     Returns:
         The complete HTML document.
     """
+    script_tags = "".join(
+        f'\n  <script src="{root}{src}" defer></script>' for src in scripts
+    )
     full_title = f"{title} — {SITE_NAME}" if title != SITE_NAME else SITE_NAME
 
     def nav_link(key: str, href: str, label: str) -> str:
@@ -302,16 +308,23 @@ def page(
         as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{root}fonts/newsreader-normal-latin.woff2"
         as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="{root}css/style.css">
+  <link rel="stylesheet" href="{root}css/style.css">{script_tags}
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
   <header class="site-header">
     <{wordmark_tag} class="wordmark"><a href="{root}">{SITE_NAME}</a></{wordmark_tag}>
-    <nav class="site-nav" aria-label="Principal">
-      {nav_link("obra", root, "Obra")}
-      {nav_link("contacto", f"{root}contacto/", "Contacto")}
-    </nav>
+    <div class="site-actions">
+      <nav class="site-nav" aria-label="Principal">
+        {nav_link("obra", root, "Obra")}
+        {nav_link("contacto", f"{root}contacto/", "Contacto")}
+      </nav>
+      <form class="search" role="search" action="{root or "./"}" method="get">
+        <label class="visually-hidden" for="buscar">Buscar obras</label>
+        <input class="search-input" id="buscar" name="q" type="search"
+               placeholder="Buscar" autocomplete="off" spellcheck="false">
+      </form>
+    </div>
   </header>
   <main id="contenido">
 {main}
@@ -346,7 +359,8 @@ def render_index(works: list[Work]) -> str:
                 "(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw",
                 eager=work is works[0],
             )
-            items.append(f"""        <li class="work">
+            keywords = esc(search_text(work))
+            items.append(f"""        <li class="work" data-search="{keywords}">
           <a href="obra/{work.slug}/">
           <span class="work-thumb">{thumb}</span>
           <span class="work-title">{esc(work.title)}</span>{when}
@@ -362,11 +376,46 @@ def render_index(works: list[Work]) -> str:
         root="",
         title=SITE_NAME,
         description=SITE_DESCRIPTION,
-        main="\n".join(sections),
+        main='    <p class="search-status" role="status"></p>\n' + "\n".join(sections),
         current="obra",
         og_image=f"img/{works[0].cover.slug}/{works[0].cover.name}-900.jpg",
         wordmark_tag="h1",
+        scripts=("js/search.js",),
     )
+
+
+def normalise(text: str) -> str:
+    """Lower-case text and strip accents, so searches ignore both.
+
+    Must match ``normalise`` in ``docs/js/search.js``.
+
+    Args:
+        text: Any text.
+
+    Returns:
+        The text without diacritics, in lower case, with single spaces.
+    """
+    decomposed = unicodedata.normalize("NFD", text)
+    stripped = "".join(c for c in decomposed if not unicodedata.combining(c))
+    return " ".join(stripped.lower().split())
+
+
+def search_text(work: Work) -> str:
+    """Collect everything a visitor might search a work by.
+
+    Args:
+        work: The work to index.
+
+    Returns:
+        The normalised title, dates, facts and text of the work.
+    """
+    facts = [
+        v
+        for value in work.meta.values()
+        for v in (value if isinstance(value, list) else [value])
+    ]
+    parts = [work.title, work.year, work.date, *facts, work.body.replace("*", "")]
+    return normalise(" ".join(parts))
 
 
 def render_facts(work: Work) -> str:

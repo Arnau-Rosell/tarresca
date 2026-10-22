@@ -1,7 +1,17 @@
 # Tárrega y Escaned
 
 Website for the artist duo Javier Tárrega and Inés Escaned. It is plain HTML and
-CSS with no JavaScript, and each work has its own page.
+CSS, and each work has its own page. The only JavaScript is the search on the index
+page (`docs/js/search.js`).
+
+## Search
+
+Every page has a search field in its header. On the index it filters the works as
+you type. On other pages, pressing Enter opens the index with the results, using
+`?q=` in the URL, so a search can be shared as a link. It matches the title, dates,
+dimensions, materials, credits and full text, ignoring accents and capitals. Every
+word must match. `build.py` writes the searchable text into each work's
+`data-search` attribute.
 
 ## Structure
 

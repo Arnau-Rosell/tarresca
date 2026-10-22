@@ -16,64 +16,73 @@
   <link rel="preload" href="fonts/newsreader-normal-latin.woff2"
         as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/search.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
   <header class="site-header">
     <h1 class="wordmark"><a href="">Tárrega y Escaned</a></h1>
-    <nav class="site-nav" aria-label="Principal">
-      <a href="" aria-current="page">Obra</a>
-      <a href="contacto/">Contacto</a>
-    </nav>
+    <div class="site-actions">
+      <nav class="site-nav" aria-label="Principal">
+        <a href="" aria-current="page">Obra</a>
+        <a href="contacto/">Contacto</a>
+      </nav>
+      <form class="search" role="search" action="./" method="get">
+        <label class="visually-hidden" for="buscar">Buscar obras</label>
+        <input class="search-input" id="buscar" name="q" type="search"
+               placeholder="Buscar" autocomplete="off" spellcheck="false">
+      </form>
+    </div>
   </header>
   <main id="contenido">
+    <p class="search-status" role="status"></p>
     <section class="year" aria-labelledby="y2024">
       <h2 class="year-title" id="y2024">2024</h2>
       <ol class="works">
-        <li class="work">
+        <li class="work" data-search="o barro esfrega o barro 2024 2024 arcilla salvaje km casi 0 mobiliario urbano propiedad del ayuntamiento de alcobaca ani, nina, nitish, joao a proposito del congreso 2024 de la academia internacional de ceramica (aic), propusimos utilizar la arcilla salvaje para intervenir diferentes elementos del casco urbano de alcobaca. el objetivo era transformar objetos urbanos comunes que han sido completamente asimilados, como los paneles informativos, publicitarios y los contenedores de basura. al perder su funcion informativa, estas piezas mudas cuestionan lo que esconden, y se nos muestran como esculturas y monumentos contemporaneos.">
           <a href="obra/o-barro-esfrega-o-barro/">
           <span class="work-thumb"><img src="img/o-barro-esfrega-o-barro/02-1800.jpg" srcset="img/o-barro-esfrega-o-barro/02-900.jpg 900w, img/o-barro-esfrega-o-barro/02-1800.jpg 1800w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1800" height="1200" alt="" fetchpriority="high" decoding="async"></span>
           <span class="work-title">O barro esfrega o barro</span>
           </a>
         </li>
-        <li class="work">
+        <li class="work" data-search="tapalixo de abaixo 2024 2024 arcilla salvaje km casi 0 plastico, metal, espuma, carton encontrados carroceria cuerda ani, nina, nitish, ines, ana no sabemos cuando se descubrio ni cuando se construyo. las unicas fechas que podremos afirmar es la del dia en el que llegamos por primera vez, 25 de julio de 2024, y la de hoy, 12 de octubre de 2024. porque una historia necesita tener al menos dos fechas para no ser tomada como ficcion. preguntamos a los vecinos sobre su historia, pero la respuesta fue siempre la misma: “eso esta ahi desde que ahi lo dejaron”. tengan por favor en consideracion que a continuacion leeremos unicamente nuestras hipotesis de lo que aqui encontramos. este lugar nos ha permitido interrogar y hasta modificar el pasado, que ahora no es menos plastico y menos docil que el porvenir. este espacio, como tantos otros, no existe si no venimos. las cosas tienden a borrarse y a perder los detalles cuando los olvida la gente. a veces unos pajaros, un gato o un hombre con un apreton, han salvado las ruinas de un poblado.">
           <a href="obra/tapalixo-de-abaixo/">
           <span class="work-thumb"><img src="img/tapalixo-de-abaixo/01-1800.jpg" srcset="img/tapalixo-de-abaixo/01-900.jpg 900w, img/tapalixo-de-abaixo/01-1800.jpg 1800w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1800" height="1200" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">Tapalixo de abaixo</span>
           </a>
         </li>
-        <li class="work">
+        <li class="work" data-search="homenagem ao descarte 2024 1984–2024 40 x 28 x 21 cm descartes de fayanza cruda y papel de transferencia encontrados en la olaria de alcobaca, abandonada en 1984 estampado y horneado en 2024 filipe, ana, cencal paseando por alcobaca encontramos la vieja fabrica de la olaria de alcobaca, abandonada en 1984. nos impresiono la cantidad de materiales e infraestructura que aun quedaba alli. recorriendo la fabrica uno podia redibujarla en funcionamiento, imaginar para que se usaba cada tipo de mesa, el deposito de arcilla girando y los hornos horneando con fuego y sin descanso. esta pieza esta formada por materiales que encontramos alli y ha sido cocida en la ultima hornada de la olaria de alcobaca.">
           <a href="obra/homenagem-ao-descarte/">
           <span class="work-thumb"><img src="img/homenagem-ao-descarte/01-1800.jpg" srcset="img/homenagem-ao-descarte/01-900.jpg 600w, img/homenagem-ao-descarte/01-1800.jpg 1200w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1200" height="1800" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">Homenagem ao descarte</span>
           <span class="work-date">1984–2024</span>
           </a>
         </li>
-        <li class="work">
+        <li class="work" data-search="olaria 2024 2024 fayanza cruda y papel de transferencia encontrados en la olaria de alcobaca, abandonada en 1984 estampado y horneado en 2024 ana">
           <a href="obra/olaria/">
           <span class="work-thumb"><img src="img/olaria/02-1800.jpg" srcset="img/olaria/02-900.jpg 900w, img/olaria/02-1800.jpg 1800w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1800" height="1200" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">Olaría</span>
           </a>
         </li>
-        <li class="work">
+        <li class="work" data-search="todo vuelve 2024 2024 fragmento de muro erosionado por el rio de la plata en la costanera sur, proveniente de las demoliciones para la construccion de la red de autopistas urbanas durante la ultima dictadura civico-militar. mireya baglietto, coordenadas art">
           <a href="obra/todo-vuelve/">
           <span class="work-thumb"><img src="img/todo-vuelve/03-1800.jpg" srcset="img/todo-vuelve/03-900.jpg 900w, img/todo-vuelve/03-1800.jpg 1800w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1800" height="1200" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">Todo vuelve</span>
           </a>
         </li>
-        <li class="work">
+        <li class="work" data-search="valla valla 2024 2024 madera y clavos coordenadas art">
           <a href="obra/valla-valla/">
           <span class="work-thumb"><img src="img/valla-valla/03-1800.jpg" srcset="img/valla-valla/03-900.jpg 900w, img/valla-valla/03-1800.jpg 1800w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1800" height="1199" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">Valla valla</span>
           </a>
         </li>
-        <li class="work">
+        <li class="work" data-search="turista sobre valla antidisturbios 2024 2024 coordenadas art">
           <a href="obra/turista-sobre-valla-antidisturbios/">
           <span class="work-thumb"><img src="img/turista-sobre-valla-antidisturbios/02-1800.jpg" srcset="img/turista-sobre-valla-antidisturbios/02-900.jpg 600w, img/turista-sobre-valla-antidisturbios/02-1800.jpg 1200w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1200" height="1800" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">Turista sobre valla antidisturbios</span>
           </a>
         </li>
-        <li class="work">
+        <li class="work" data-search="el vasito 2024 2024 coordenadas art">
           <a href="obra/el-vasito/">
           <span class="work-thumb"><img src="img/el-vasito/cover-1800.jpg" srcset="img/el-vasito/cover-900.jpg 900w, img/el-vasito/cover-1800.jpg 1800w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1800" height="1157" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">El vasito</span>
@@ -84,19 +93,19 @@
     <section class="year" aria-labelledby="y2023">
       <h2 class="year-title" id="y2023">2023</h2>
       <ol class="works">
-        <li class="work">
+        <li class="work" data-search="la puerta roja 2023 2023 250 x 125 x 80 000 cm madera pintura cris, tote, vecinos de casais y cevide en el valle, el rio mino traza la frontera entre espana y portugal. en la ladera gallega hay una puerta roja que, a la luz del sol, marca un hito en el paisaje. reprodujimos la misma puerta en la ladera portuguesa. con las mismas medidas, a la misma altura, separadas por 800 metros, ahora las dos puertas quedan comunicadas generando un vinculo a traves del limite.">
           <a href="obra/la-puerta-roja/">
           <span class="work-thumb"><img src="img/la-puerta-roja/cover-1800.jpg" srcset="img/la-puerta-roja/cover-900.jpg 900w, img/la-puerta-roja/cover-1800.jpg 1800w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1800" height="1200" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">La puerta roja</span>
           </a>
         </li>
-        <li class="work">
+        <li class="work" data-search="columna suspendida 2023 2023 350 x 300 x 400 cm madera metal cuerda miguel fran en casa de miguel habia un establo donde los bueyes descansaban cuando sus abuelos eran jovenes. en su lugar quedan hoy cuatro columnas y tres vigas. porticos de madera que resisten como un monumento a la vida campesina. fuentesauco es un pueblo de zamora que, como muchos otros pueblos, lleva varias decadas vaciandose. campesinos quedan pocos, ahora todos trabajan en un matadero porcino. los dias de viento sureste, el pueblo huele a su industria. en casa de miguel aun estan los aperos que sus abuelos heredaron. elementos que siguen siendo utiles, solo que nadie los utiliza. un tornillo para prensar la uva, una escalera de madera, un carro de tiro, una cancela para los animales, una pesa de balanza. retrato de la rica produccion casera de entonces. con los aperos ampliamos la estructura fosil del establo. levantamos dos porticos nuevos. el orden habitual de los elementos —la vertical soporta la horizontal— se invierte. la columna cuelga ahora de las vigas, que a su vez vuelan gracias a los contrapesos. esta en calma, se encuentra en equilibrio, resiste el balanceo.">
           <a href="obra/columna-suspendida/">
           <span class="work-thumb"><img src="img/columna-suspendida/01-1800.jpg" srcset="img/columna-suspendida/01-900.jpg 900w, img/columna-suspendida/01-1800.jpg 1800w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1800" height="1241" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">Columna suspendida</span>
           </a>
         </li>
-        <li class="work">
+        <li class="work" data-search="facer un tellado 2023 2023 50 x 300 x 150 cm tejas ramas por la estacion de frieira pasan varios trenes al dia y solo paran dos. uno de ida y otro de vuelta. a la misma hora. la presa de frieira, la primera del rio mino, es menos regular. se abre cuando compensa y sin avisar. entre las dos, hay un tejado nuevo de teja vieja. es un tejado sin muros y no esconde nada. algun paisano —de los pocos que aun pasan por alli— debio pensar que si y por eso lo desmonto. nos gusta imaginar su desconcierto al encontrarlo y la desilusion ante la falta de tesoro. hacer un tejado no es dificil en el suelo donde hay tejas">
           <a href="obra/facer-un-tellado/">
           <span class="work-thumb"><img src="img/facer-un-tellado/01-1800.jpg" srcset="img/facer-un-tellado/01-900.jpg 900w, img/facer-un-tellado/01-1800.jpg 1800w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1800" height="1800" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">Facer un tellado</span>
@@ -107,13 +116,13 @@
     <section class="year" aria-labelledby="y2021">
       <h2 class="year-title" id="y2021">2021</h2>
       <ol class="works">
-        <li class="work">
+        <li class="work" data-search="llegar tarde a especular 2021 2021 300 x 800 cm rotulador valla publicitaria un domingo de junio estabamos caminando por el barrio de oira, a las afueras de ourense. al salir de una pequena zona boscosa nos topamos con un gran cartel blanco que anunciaba: proxima construccion de mas de 600 viviendas diversas tipologias por la composicion del panel, se intuia sobre el blanco mas informacion. al acercarnos, justo debajo, podiamos completar el anuncio gracias a los rayos de sol que un dia lo hicieron desaparecer. ¿cuando se habia colocado la valla? ¿cuantos dias hacen falta para que el sol consiga borrar un mensaje? preguntamos a varios vecinos que disfrutaban de su paseo dominical. la respuesta fue unanime: hace mucho tiempo que eso esta ahi, por lo menos desde antes del virus, y nadie lo quita. nadie lo quita, pero el sol se levanta cada manana con la decision de borrarlo. al sol no le gustan los mensajes especuladores, pense. ni ningun otro. el sol no tiene horror vacui. el solo busca el blanco puro. tras las pesquisas vecinales, buscamos el anuncio en internet. alli encontramos un articulo de ourense dixital del 10 de mayo de 2008, cuatro meses antes de la caida de lehman brothers y del consiguiente pinchazo de la burbuja inmobiliaria, generada por los grandes especuladores en espana. bajo el cartel, la maleza. asi que podemos suponer que llegaron tarde a especular. ahora, nosotros llegabamos trece anos tarde a intervenir esa valla especulativa. en ese momento solo queremos restituir toda la informacion borrada: una ilustracion del posible proyecto, un par de frases tentadoras y un numero de telefono. nos pusimos a ello con lo que teniamos. fue un intento de desafiar al sol con dos rotuladores que llevabamos encima y dos listones de madera que nos regalaron unos vecinos. una tarde de trabajo dedicada a reflotar la cutre y desdibujada especulacion inmobiliaria. ¿cuanto tardara el sol en borrar este mensaje?">
           <a href="obra/llegar-tarde-a-especular/">
           <span class="work-thumb"><img src="img/llegar-tarde-a-especular/02-1800.jpg" srcset="img/llegar-tarde-a-especular/02-900.jpg 900w, img/llegar-tarde-a-especular/02-1800.jpg 1800w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1800" height="1012" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">Llegar tarde a especular</span>
           </a>
         </li>
-        <li class="work">
+        <li class="work" data-search="una mesa y cuatro sillas 2021 10 al 14 de mayo de 2021 170 x 80 x 120 cm madrid street art project, calle lavapies a la espera de cuatro personas y una idea. en el marco del festival calle lavapies nos apropiamos de un pedazo de calle. durante una semana de mayo, situamos una mesa y cuatro sillas en la calle lavapies. propusimos un espacio de encuentro y dialogo en una mesa alegal, inclasificable; no existe esta casilla en la administracion. quisimos partir de dos temas concretos: arte y ciudad, ademas de los que alli surgieran. dejamos que el encuentro espontaneo desvelara nuestras necesidades comunes. reivindicamos el derecho colectivo a la ciudad y a cuestionarla desde abajo. la mesa, ademas de mesa, fue el cuaderno de notas; en ella quedaron dibujados fragmentos de las conversaciones. en el transcurso de los dias conversamos con cincuenta y cuatro personas, unas vinieron a proposito, otras nos encontraron y se detuvieron. el dialogo se continuo a modo de una larguisima conversacion entre gente que no estuvo alli a la vez. la mesa, las sillas, nosotros y la calle fuimos el hilo conductor. al cabo de cinco dias transformamos la mesa y las sillas en una escultura en equilibrio que fue expuesta durante el festival.">
           <a href="obra/una-mesa-y-cuatro-sillas/">
           <span class="work-thumb"><img src="img/una-mesa-y-cuatro-sillas/cover-1800.jpg" srcset="img/una-mesa-y-cuatro-sillas/cover-900.jpg 720w, img/una-mesa-y-cuatro-sillas/cover-1800.jpg 1440w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1440" height="1800" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">Una mesa y cuatro sillas</span>
@@ -125,7 +134,7 @@
     <section class="year" aria-labelledby="y2020">
       <h2 class="year-title" id="y2020">2020</h2>
       <ol class="works">
-        <li class="work">
+        <li class="work" data-search="plaza marmol 2020 2 de febrero de 2020 2 x 2500 x 2000 cm retales de marmol basurama, madrid street art project, marmolerias del barrio de la elipa sara mateu a principios de 2020 trabajamos en colaboracion con basurama en el barrio de la elipa, en madrid. durante esas semanas, descubrimos un lugar sin nombre. una plaza entre tres bloques de viviendas y un gran muro. un espacio vacio sin ninguna practica establecida, pero receptivo a ser apropiado y cambiante. dedicamos tiempo a estar, a observar, a charlar con la gente que por alli cruzaba, pero rara vez se detenia. hablamos mucho de las marmolerias que llenaban antiguamente el barrio, de las que hoy solo sobreviven unas pocas. las visitamos y conseguimos llenar un par de furgonetas con sus retales. nos organizamos para apropiarnos por una manana de este no lugar. vinimos a reunirnos y expresarnos. vecinas, bailarinas, actrices, artistas... personas que entendemos la calle como el espacio donde compartir el arte en comunidad. el material como memoria el cuerpo como generador de geografias el juego como vinculo con el espacio la calle como lugar de expresion">
           <a href="obra/plaza-marmol/">
           <span class="work-thumb"><img src="img/plaza-marmol/05-1800.jpg" srcset="img/plaza-marmol/05-900.jpg 900w, img/plaza-marmol/05-1800.jpg 1800w" sizes="(min-width: 64rem) 22vw, (min-width: 40rem) 30vw, 46vw" width="1800" height="1199" alt="" loading="lazy" decoding="async"></span>
           <span class="work-title">Plaza mármol</span>

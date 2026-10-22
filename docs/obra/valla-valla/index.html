@@ -21,10 +21,17 @@
   <a class="skip" href="#contenido">Saltar al contenido</a>
   <header class="site-header">
     <p class="wordmark"><a href="../../">Tárrega y Escaned</a></p>
-    <nav class="site-nav" aria-label="Principal">
-      <a href="../../" aria-current="page">Obra</a>
-      <a href="../../contacto/">Contacto</a>
-    </nav>
+    <div class="site-actions">
+      <nav class="site-nav" aria-label="Principal">
+        <a href="../../" aria-current="page">Obra</a>
+        <a href="../../contacto/">Contacto</a>
+      </nav>
+      <form class="search" role="search" action="../../" method="get">
+        <label class="visually-hidden" for="buscar">Buscar obras</label>
+        <input class="search-input" id="buscar" name="q" type="search"
+               placeholder="Buscar" autocomplete="off" spellcheck="false">
+      </form>
+    </div>
   </header>
   <main id="contenido">
     <article class="work-page">
