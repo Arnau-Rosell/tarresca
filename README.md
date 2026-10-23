@@ -42,20 +42,32 @@ cover: cover.jpg            # thumbnail on the index page
 media:                      # in display order; "video" marks where video_url goes
   - video
   - 01.jpg
+place: Lausana y Santiago de Chile                # optional
+authors: Javier Tárrega e Inés Escaned           # optional
 dimensions: 250 x 125 x 80 000 cm
 materials:
   - Madera
   - Pintura
 thanks: Cris, Tote, vecinos de Casais y Cevide
 photos: Sara Mateu          # optional
-video_url: https://player.vimeo.com/video/…   # optional embed URL
+video_url: https://player.vimeo.com/video/…?h=…   # optional; see below
 ---
 
 Paragraphs separated by blank lines. Single line breaks are kept.
 *italic*, **bold**. Short multi-line paragraphs are set as verse.
 ```
 
-The numeric prefix of the file name sets the order of the works.
+The numeric prefix of the file name sets the order of the works. `01` is the newest
+and appears first. When you add a newer work, shift the other numbers down by one;
+the page addresses don't change, because they come from the slug.
+
+### Vimeo videos
+
+Use the *player* address, including the `h=` key for unlisted videos (on the video's
+Vimeo page, use Share, then Embed). In Vimeo, the video's privacy setting *Where can
+this be embedded?* must allow the site's domain (or *Anywhere*). Otherwise the player
+shows "Because of its privacy settings, this video cannot be played here." If `video`
+is the first item in `media`, the page opens with the video.
 
 ### Adding a photo
 

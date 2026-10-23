@@ -32,6 +32,8 @@ CONTACT_INSTAGRAM: str | None = None
 
 IMAGE_SIZES = (900, 1800)
 META_LABELS = (
+    ("place", "Lugar"),
+    ("authors", "Autoría"),
     ("dimensions", "Dimensiones"),
     ("materials", "Materiales"),
     ("thanks", "Agradecimientos"),
@@ -506,20 +508,21 @@ def render_work(work: Work, previous: Work, following: Work) -> str:
     """
     media = list(work.media) or [work.cover]
     images = [m for m in media if isinstance(m, Image)]
-    lead_index = next(i for i, m in enumerate(media) if isinstance(m, Image))
-    lead = media[lead_index]
-    assert isinstance(lead, Image)
-    rest = media[:lead_index] + media[lead_index + 1 :]
-    lead_class = "plate--lead-tall" if lead.is_portrait else "plate--lead"
-    lead_html = picture(
-        lead,
-        "../../",
-        f"{work.title}, imagen 1 de {len(images)}",
-        "(min-width: 40rem) 40rem, 92vw"
-        if lead.is_portrait
-        else "(min-width: 82rem) 76rem, 92vw",
-        eager=True,
-    )
+    lead, rest = media[0], media[1:]
+    if isinstance(lead, Video):
+        lead_figure = render_video(lead, work)
+    else:
+        lead_class = "plate--lead-tall" if lead.is_portrait else "plate--lead"
+        lead_html = picture(
+            lead,
+            "../../",
+            f"{work.title}, imagen 1 de {len(images)}",
+            "(min-width: 40rem) 40rem, 92vw"
+            if lead.is_portrait
+            else "(min-width: 82rem) 76rem, 92vw",
+            eager=True,
+        )
+        lead_figure = f'<figure class="plate {lead_class}">{lead_html}</figure>'
     when = (
         f'\n      <p class="work-when">{esc(work.date)}</p>'
         if work.date != work.year
@@ -535,7 +538,7 @@ def render_work(work: Work, previous: Work, following: Work) -> str:
       </p>
       <h1 class="work-name">{esc(work.title)}</h1>{when}
     </header>
-    <figure class="plate {lead_class}">{lead_html}</figure>
+    {lead_figure}
     <section class="{text_class}" aria-label="Sobre la obra">{prose_html}
       {render_facts(work)}
     </section>
