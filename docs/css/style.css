@@ -698,3 +698,9 @@ main {
     border-bottom-color: var(--ink);
   }
 }
+
+/* Animated thumbnails: <picture> must fill the 4:3 frame like a plain <img>. */
+.work-thumb picture {
+  display: block;
+  height: 100%;
+}

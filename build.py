@@ -80,6 +80,7 @@ class Work:
     media: tuple[Image | Video, ...]
     meta: FrontMatter
     body: str
+    cover_loop: str | None = None
 
 
 def jpeg_size(path: Path) -> tuple[int, int]:
@@ -182,6 +183,7 @@ def load_work(path: Path) -> Work:
         media=tuple(media),
         meta={key: fields[key] for key, _ in META_LABELS if key in fields},
         body=body,
+        cover_loop=str(fields["loop"]) if fields.get("loop") else None,
     )
 
 
@@ -355,6 +357,14 @@ def render_index(works: list[Work]) -> str:
             "(min-width: 40rem) 31vw, 47vw",
             eager=work is works[0],
         )
+        if work.cover_loop:
+            # Animated stills from the video; the static cover is kept for
+            # visitors who ask for reduced motion.
+            loop = f"img/{work.slug}/{work.cover_loop}"
+            thumb = (
+                '<picture><source media="(prefers-reduced-motion: no-preference)" '
+                f'srcset="{loop}" type="image/webp">{thumb}</picture>'
+            )
         keywords = esc(search_text(work))
         items.append(f"""      <li class="work" data-search="{keywords}">
         <a href="obra/{work.slug}/">

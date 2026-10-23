@@ -2,6 +2,7 @@
 title: La puerta roja
 year: 2023
 date: 2023
+loop: loop-900.webp
 cover: cover.jpg
 media:
   - video

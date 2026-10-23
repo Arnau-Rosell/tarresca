@@ -2,6 +2,7 @@
 title: Todo vuelve
 year: 2024
 date: 2024
+loop: loop-900.webp
 cover: 03.jpg
 media:
   - 01.jpg
