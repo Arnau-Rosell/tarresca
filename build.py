@@ -80,7 +80,7 @@ class Work:
     media: tuple[Image | Video, ...]
     meta: FrontMatter
     body: str
-    cover_loop: str | None = None
+    cover_clip: str | None = None
 
 
 def jpeg_size(path: Path) -> tuple[int, int]:
@@ -183,7 +183,7 @@ def load_work(path: Path) -> Work:
         media=tuple(media),
         meta={key: fields[key] for key, _ in META_LABELS if key in fields},
         body=body,
-        cover_loop=str(fields["loop"]) if fields.get("loop") else None,
+        cover_clip=str(fields["clip"]) if fields.get("clip") else None,
     )
 
 
@@ -357,13 +357,14 @@ def render_index(works: list[Work]) -> str:
             "(min-width: 40rem) 31vw, 47vw",
             eager=work is works[0],
         )
-        if work.cover_loop:
-            # Animated stills from the video; the static cover is kept for
-            # visitors who ask for reduced motion.
-            loop = f"img/{work.slug}/{work.cover_loop}"
-            thumb = (
-                '<picture><source media="(prefers-reduced-motion: no-preference)" '
-                f'srcset="{loop}" type="image/webp">{thumb}</picture>'
+        if work.cover_clip:
+            # A silent clip laid over the cover. js/clips.js plays it only while
+            # on screen and never under reduced motion; otherwise the cover shows.
+            clip = f"img/{work.slug}/{work.cover_clip}"
+            thumb += (
+                f'<video class="work-clip" src="{clip}" muted loop playsinline '
+                'preload="none" disableremoteplayback aria-hidden="true" '
+                'tabindex="-1"></video>'
             )
         keywords = esc(search_text(work))
         items.append(f"""      <li class="work" data-search="{keywords}">
@@ -385,7 +386,7 @@ def render_index(works: list[Work]) -> str:
         current="obra",
         og_image=f"img/{works[0].cover.slug}/{works[0].cover.name}-900.jpg",
         wordmark_tag="h1",
-        scripts=("js/search.js",),
+        scripts=("js/search.js", "js/clips.js"),
     )
 
 

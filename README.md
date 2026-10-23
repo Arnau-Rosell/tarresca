@@ -29,7 +29,8 @@ build.py                  Generates the HTML from content/ (standard library onl
 
 1. Change a text in `content/obra/*.md` (or the CSS in `docs/css/style.css`).
 2. Run `python3 build.py`.
-3. Preview with `python3 -m http.server 8002 -d docs` at http://localhost:8002.
+3. Preview with `python3 serve.py` at http://localhost:8002. It is like
+   `python3 -m http.server`, but supports the range requests Safari needs for video.
 
 ### Content file format
 
@@ -39,7 +40,7 @@ title: La puerta roja
 year: 2023                  # shown above the title on the work page
 date: 2023                  # shown under the thumbnail (e.g. "1984–2024")
 cover: cover.jpg            # thumbnail on the index page
-loop: loop-900.webp         # optional animated thumbnail (see below)
+clip: clip.mp4              # optional moving thumbnail (see below)
 media:                      # in display order; "video" marks where video_url goes
   - video
   - 01.jpg
@@ -70,24 +71,21 @@ this be embedded?* must allow the site's domain (or *Anywhere*). Otherwise the p
 shows "Because of its privacy settings, this video cannot be played here." If `video`
 is the first item in `media`, the page opens with the video.
 
-### Animated thumbnails
+### Moving thumbnails
 
-A work can show a short loop of three stills from its video on the index, instead
-of its static cover. Visitors who have turned on reduced motion in their system
-settings still see the static cover. The loops are animated WebP files: like a GIF,
-but with full photo colour at a fraction of the size.
+A work can play a short, silent clip from its video on the index, laid over its
+static cover. `docs/js/clips.js` plays a clip only while it is on screen, and
+never for visitors who have turned on reduced motion; in every other case the
+cover stays. Keep clips to a few seconds and a few hundred KB.
 
-1. Get three stills (JPEG/PNG) from the video. With `uv` installed, you can grab a
-   still at a given second (here 66 s) without installing anything else:
-   ```sh
-   FF=$(uvx --from imageio-ffmpeg python -c "import imageio_ffmpeg as f; print(f.get_ffmpeg_exe())")
-   $FF -ss 66 -i video.mp4 -frames:v 1 -vf scale=900:-2 f1.png
-   ```
-2. Combine them (each frame is shown for 950 ms):
-   ```sh
-   img2webp -loop 0 -lossy -q 72 -m 6 -d 950 f1.png f2.png f3.png -o docs/img/<slug>/loop-900.webp
-   ```
-3. Add `loop: loop-900.webp` to the work's front matter and rebuild.
+With `uv` installed, you can cut and compress a 4-second clip starting at 5:29
+without installing anything else:
+```sh
+FF=$(uvx --from imageio-ffmpeg python -c "import imageio_ffmpeg as f; print(f.get_ffmpeg_exe())")
+$FF -ss 329 -t 4 -i video.mp4 -an -vf "scale=720:-2,fps=25" -c:v libx264 -preset slow \
+    -crf 27 -pix_fmt yuv420p -movflags +faststart docs/img/<slug>/clip.mp4
+```
+Then add `clip: clip.mp4` to the work's front matter and rebuild.
 
 ### Adding a photo
 

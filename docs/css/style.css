@@ -699,8 +699,22 @@ main {
   }
 }
 
-/* Animated thumbnails: <picture> must fill the 4:3 frame like a plain <img>. */
-.work-thumb picture {
-  display: block;
+/* Video clips sit over the cover and only appear once they are playing. */
+.work-thumb {
+  position: relative;
+}
+
+.work-clip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--hover) var(--ease-out);
+}
+
+.work-clip.is-playing {
+  opacity: 1;
 }
