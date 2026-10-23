@@ -651,13 +651,20 @@ main {
   margin: 0;
   padding: 0.15rem 0 0.25rem;
   border: 0;
-  border-bottom: 1px solid var(--ink-soft);   /* 5.7:1, visible as a control */
+  border-bottom: 1px solid var(--ink-soft);   /* 6.2:1, visible as a control */
   border-radius: 0;
   background: transparent;
   color: var(--ink);
   font: 500 0.9375rem / 1.3 var(--font-display);
   letter-spacing: 0.01em;
   transition: border-color var(--hover) var(--ease-out);
+}
+
+/* iOS Safari zooms into any field under 16px on focus; stay at 16px on touch. */
+@media (pointer: coarse) {
+  .search-input {
+    font-size: max(16px, 1rem);
+  }
 }
 
 .search-input::placeholder {
